@@ -29,8 +29,8 @@ public class Main {
          System.out.println("Suma wartośći a " + suma);
          System.out.println("Suma wartośći b " + sumb);
 
-
-         if( dla != dlb || a.){
+        //sprawdzanie czy długości arrayów są równe
+         if( dla != dlb || a == null || dla == 0 || dlb != dla || b == null || dlb == 0){
              //System.out.println("Nie są jednakowej długośći");
              return false;
          }
@@ -40,7 +40,7 @@ public class Main {
              //sprawdzanie wszystkich elementów tablicy a
              for (int j = 0; j < dla; j++) {
                  //Sprawdzanie po kolei czy kwadrat danej liczby
-                 //jest kwadratem licbzy z tablicy a
+                 //jest kwadratem liczby z tablicy a
                  if ( (int)pow(b[j], 2) == a[j]) {
                      //System.out.println("Jest równa tablicy b");
                      jest = true;

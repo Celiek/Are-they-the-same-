@@ -11,30 +11,36 @@ public class Main {
     public static void main(String[] args) {
         // System.out.println("Hello, World!");
 
-        int[] a = new int[] { 0, 144, 19, 161, 19, 144, 19, 11 };
-        int[] b = new int[] { 0, 14641, 20736, 361, 25921, 361, 20736, 361 };
-        int[] a1 = new int[] { 2, 2, 3 };
-        int[] b1 = new int[] { 4, 4, 9 };
-
+        // int[] a = new int[] { 0, 144, 19, 161, 19, 144, 19, 11 };
+        // int[] b = new int[] { 0, 14641, 20736, 361, 25921, 361, 20736, 361 };
+        // int[] a1 = new int[] { 2, 2, 3 };
+        // int[] b1 = new int[] { 4, 4, 9 };
         int[] a2 = new int[] { 11, 19, 19, 121, 144, 144, 161, 161 };
         int[] b2 = new int[] { 121, 361, 361, 361, 14641, 20736, 20736, 25921 };
-        int[] a3 = new int[] {};
-        int[] b3 = new int[] {};
-
+        // int[] a3 = new int[] {};
+        // int[] b3 = new int[] {};
         int[] a4 = new int[] { 0 };
         int[] b4 = new int[] { 0 };
+        int[] a6 = new int[] { 11, 19, 19, 19, 121, 144, 144, 161, 1008 };
+        int[] b6 = new int[] { 121, 361, 361, 14641, 20736, 20736, 25921, 36100 };
+        int[] a7 = new int[]{2,2,3};
+        int[] b7 = new int[]{4,9,9};
 
-        System.out.println("Test 1: ");
-        System.out.println(AreSame(a, b));
-        System.out.println("Test 2 Wartosc ktora powinna wyjsc : True");
-        System.out.println(AreSame(a1, b1));
-        System.out.println("Test 3: ");
-        System.out.println(AreSame(a2, b2));
-        System.out.println("Test 4: ");
-        System.out.println(AreSame(a3, b3));
-        System.out.println("Test 5: ");
-        System.out.println(AreSame(a4, b4));
 
+        // System.out.println("Test 1: ");
+        // System.out.println(AreSame(a, b));
+        // System.out.println("Test 2 Wartosc ktora powinna wyjsc : True");
+        // System.out.println(AreSame(a1, b1));
+        // System.out.println("Test 3: ");
+        // System.out.println(AreSame(a2, b2));
+        // System.out.println("Test 4: ");
+        // System.out.println(AreSame(a3, b3));
+        // System.out.println("Test 5: ");
+        // System.out.println(AreSame(a4, b4));
+        // System.out.println("Test 6: ");
+        // System.out.println(AreSame(a6, b6));
+        System.out.println(":Test 7" );
+        System.out.println(AreSame(a7, b7));
     }
 
     static boolean AreSame(int[] a, int[] b) {
@@ -58,10 +64,13 @@ public class Main {
 
             if (dla != dlb) {
                 System.out.println("Nie są jednkaowej długośći ");
-                jest = false;
+                return false;
             } else if(a == null || b == null){
                 System.out.println("Tablice są puste");
                 return false; 
+            } else if( dla == 0 && dlb == 0){
+                System.out.println("Tablice mają tylko zero w sobie ");
+                return true;
             }
 
             // for (int i = 0; i < dla; i++) {
@@ -93,13 +102,9 @@ public class Main {
             } else if (suma == sumb) {
                 // sprawdzanie każdej kómórki pamieci
                 for (int j= 0; j < dla; j++) {
-                    // sprawdzanie czy kwadrat sumy i-tej jest równy wartości o tym samym
-                    // indeksie z drugiej tfor (int i = 0; i < dla; i++) {
-                    // System.out.println("Wartosc zmiennej a: " + a[i]);
-                    // System.iout.println("Wartosc zmiennej b: " + b[i]);
-                    // }ablicy
                     if (pow(b[j], 2) == a[j]) {
                         // sprawdzanie czy długość dla jest dłuższe od dlb
+                        jest = true;
                     } else if (b[j] == 0 && a[j] == 0) {
                         jest = true;
                     } else {
@@ -108,6 +113,7 @@ public class Main {
                 }
             } else if (sumb > suma) {
                 for (int j = 0; j < dla; j++) {
+                    
                     // Sprawdzanie po kolei czy kwadrat liczby z talicy a
                     // jest liczbą z tablicy b
                     if (pow(a[j], 2) == b[j]) {
@@ -119,7 +125,6 @@ public class Main {
                     } else {
                         // jezeli chociaz jedna z liczb sie nie zgodzi to po co dalej sprawdzać
                         jest = false;
-                        break;
                     }
 
                 }

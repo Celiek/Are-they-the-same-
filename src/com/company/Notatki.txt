@@ -1,0 +1,23 @@
+
+int[] a6 = new int[]{11, 19, 19, 19, 121, 144, 144, 161, 1008};
+int[] b6 = new int[]{121, 361, 361, 14641, 20736, 20736, 25921, 36100};
+
+
+Wartosc zmiennej b: 4
+
+Wartosc zmiennej b: 9
+
+Wartosc zmiennej b: 9
+
+int[] a7 = new int[] = {2,2,3};
+int[] b7 = new int[] = {4,9,9};
+ 
+1. W tej strukturze centralizacja utrzymana jest na bardzo wysokim poziomie, co silnie uzależnia całe przedsiębiorstwo od jednej, decyzyjnej osoby.
+
+2. Z uwagi na jednoosobowe kierownictwo elastyczność zarządzania jest mała, a w okresach wzmożonych trudno jest skoordynować działania wszystkich, podległych jednostek.
+
+3. Brak specjalistów skutkuje problemem szybkiego pozyskania rzetelnych i wiarygodnych informacji, pomocnych przy podejmowaniu decyzji zarządczych.
+
+4. Naczelnie kierownictwo musi posiadać obszerną wiedzę nt. funkcjonowania całego przedsiębiorstwa, jego specyfiki i funkcjonowania poszczególnych komórek.
+
+5. W przypadku absencji kierownika droga służbowa może zostać przerwana - a co za tym idzie, przekaz informacji i delegacja zadań zostaje bardzo utrudniona. Ma to negatywny wpływ na funkcjonowanie całej instytucji i realizację zadań.

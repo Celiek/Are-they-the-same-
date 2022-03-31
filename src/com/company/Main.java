@@ -1,8 +1,6 @@
 //package com.company;
-
 import java.util.Arrays;
 import java.util.stream.IntStream;
-import java.io.*;
 
 import static java.lang.Math.pow;
 
@@ -25,6 +23,8 @@ public class Main {
         int[] b6 = new int[] { 121, 361, 361, 14641, 20736, 20736, 25921, 36100 };
         int[] a7 = new int[]{2,2,3};
         int[] b7 = new int[]{4,9,9};
+        int[] a8 = new int[] { -14, 0, 1, 19, 144, 161, 191, 195 };
+        int[] b8 = new int[] { 0, 1, 196, 361, 20736, 25921, 36481, 38025 };
 
 
         // System.out.println("Test 1: ");
@@ -39,17 +39,22 @@ public class Main {
         // System.out.println(AreSame(a4, b4));
         // System.out.println("Test 6: ");
         // System.out.println(AreSame(a6, b6));
-        System.out.println(":Test 7" );
-        System.out.println(AreSame(a7, b7));
+        // System.out.println(":Test 7" );
+        // System.out.println(AreSame(a7, b7));
+
+        System.out.println("tEST 8 :");
+        System.out.print(AreSame(a8, b8));
     }
 
     static boolean AreSame(int[] a, int[] b) {
             Arrays.sort(a);
             Arrays.sort(b);
-            boolean jest = false;
+            //określa czy dana tablica jest podzielna przez drugą
+            int jest = 0;
             // dlugosci tablic a i b
             int dla = a.length;
             int dlb = b.length;
+            //suma długośći obu tablic
             int suma = IntStream.of(a).sum();
             int sumb = IntStream.of(b).sum();
 
@@ -82,61 +87,58 @@ public class Main {
             if (suma > sumb) {
                 // sprawdzanie wszystkich elementów tablicy a
                 for (int j = 0; j < dla; j++) {
-                    // Sprawdzanie po kolei czy kwadrat danej liczby
-                    // jest kwadratem licbzy z tablicy a
-                    if (pow(b[j], 2) == a[j]) {
-                        // System.out.println("Jest równa tablicy b");
-                        jest = true;
-                        // Sprawdzanie czy wartość zmiennej a i b jest taka sama
-                    } else if (b[j] == 0 && a[j] == 0) {
-                        jest = true;
-                        // alternatywne wyniki do warunków powyżej
-                    } else {
-                        jest = false;
-                        //jeżeli chociaż jedna liczba się nie zgadza to nie ma sensu sprawdzac dalej
-                        break;
+                    for(int i = 0 ; i < dla ; i++){
+                        // Sprawdzanie po kolei czy kwadrat danej liczby
+                        // jest kwadratem licbzy z tablicy a
+                        if (pow(b[j], 2) == a[j]) {
+                            // System.out.println("Jest równa tablicy b");
+                            jest++;
+                            // Sprawdzanie czy wartość zmiennej a i b jest taka sama
+                        } else if (b[j] == 0 && a[j] == 0) {
+                            jest++;
+                            // alternatywne wyniki do warunków powyżej
+                        }
                     }
-
                 }
                 // jeżeli sumy długości obu tablic sa jednakowe
             } else if (suma == sumb) {
                 // sprawdzanie każdej kómórki pamieci
                 for (int j= 0; j < dla; j++) {
-                    if (pow(b[j], 2) == a[j]) {
-                        // sprawdzanie czy długość dla jest dłuższe od dlb
-                        jest = true;
-                    } else if (b[j] == 0 && a[j] == 0) {
-                        jest = true;
-                    } else {
-                        jest = false;
+                    for(int i = 0; i < dla; i++){
+                        if (pow(b[j], 2) == a[j]) {
+                            // sprawdzanie czy długość dla jest dłuższe od dlb
+                            jest++;
+                        } else if (b[j] == 0 && a[j] == 0) {
+                            jest++;
+                        }
                     }
                 }
             } else if (sumb > suma) {
                 for (int j = 0; j < dla; j++) {
-                    
-                    // Sprawdzanie po kolei czy kwadrat liczby z talicy a
-                    // jest liczbą z tablicy b
-                    if (pow(a[j], 2) == b[j]) {
-                        // System.out.println("Tablica a jest równa tablica b");
-                        jest = true;
-                        // poniżej dodana nowa wartość
-                    } else if (a[j] == 0 && b[j] == 0) {
-                        jest = true;
-                    } else {
-                        // jezeli chociaz jedna z liczb sie nie zgodzi to po co dalej sprawdzać
-                        jest = false;
+                    for(int i = 0; i < dla; i++){
+                        // Sprawdzanie po kolei czy kwadrat liczby z talicy a
+                        // jest liczbą z tablicy b
+                        if (pow(a[i], 2) == b[j]) {
+                            // System.out.println("Tablica a jest równa tablica b");
+                            jest++;
+                            // poniżej dodana nowa wartość
+                        } else if (a[j] == 0 && b[j] == 0) {
+                            jest++;
+                        }
                     }
 
                 }
             }
 
             // zwraca ostateczny wynik działania funkcji
-            if (jest) {
+            if (jest == dla) {
                 return true;
-            } else {
+            }else if(jest == dlb){
+                return true;
+            }
+            else {
                 return false;
             }
-
         }
 
     }

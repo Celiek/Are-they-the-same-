@@ -39,11 +39,11 @@ public class Main {
         // System.out.println(AreSame(a4, b4));
         // System.out.println("Test 6: ");
         // System.out.println(AreSame(a6, b6));
-        // System.out.println(":Test 7" );
-        // System.out.println(AreSame(a7, b7));
+        System.out.println(":Test 7" );
+        System.out.println(AreSame(a7, b7));
 
-        System.out.println("tEST 8 :");
-        System.out.print(AreSame(a8, b8));
+        // System.out.println("tEST 8 :");
+        // System.out.print(AreSame(a8, b8));
     }
 
     static boolean AreSame(int[] a, int[] b) {
@@ -57,6 +57,9 @@ public class Main {
             //suma długośći obu tablic
             int suma = IntStream.of(a).sum();
             int sumb = IntStream.of(b).sum();
+            
+            a = ridOFF(a);
+            b = ridOFF(b);
 
             // for (int i = 0; i < a.length; i++) {
             // System.out.println("Wartosc zmiennej a: " + a[i]);
@@ -90,11 +93,11 @@ public class Main {
                     for(int i = 0 ; i < dla ; i++){
                         // Sprawdzanie po kolei czy kwadrat danej liczby
                         // jest kwadratem licbzy z tablicy a
-                        if (pow(b[j], 2) == a[j]) {
+                        if (pow(b[j], 2) == a[i]) {
                             // System.out.println("Jest równa tablicy b");
                             jest++;
                             // Sprawdzanie czy wartość zmiennej a i b jest taka sama
-                        } else if (b[j] == 0 && a[j] == 0) {
+                        } else if (b[j] == 0 && a[i] == 0) {
                             jest++;
                             // alternatywne wyniki do warunków powyżej
                         }
@@ -103,31 +106,29 @@ public class Main {
                 // jeżeli sumy długości obu tablic sa jednakowe
             } else if (suma == sumb) {
                 // sprawdzanie każdej kómórki pamieci
-                for (int j= 0; j < dla; j++) {
+                for (int j = 0; j < dla; j++) {
                     for(int i = 0; i < dla; i++){
-                        if (pow(b[j], 2) == a[j]) {
+                        if (pow(b[j], 2) == a[i]) {
                             // sprawdzanie czy długość dla jest dłuższe od dlb
                             jest++;
-                        } else if (b[j] == 0 && a[j] == 0) {
+                        } else if (b[j] == 0 && a[i] == 0) {
                             jest++;
                         }
                     }
                 }
             } else if (sumb > suma) {
-                for (int j = 0; j < dla; j++) {
-                    for(int i = 0; i < dla; i++){
-                        // Sprawdzanie po kolei czy kwadrat liczby z talicy a
-                        // jest liczbą z tablicy b
-                        if (pow(a[i], 2) == b[j]) {
-                            // System.out.println("Tablica a jest równa tablica b");
+                for(int i = 0; i < dlb; i++){
+                    for(int j = 0; j < dlb; j++){
+                        if( pow(a[i] , 2) == b[j]){
                             jest++;
-                            // poniżej dodana nowa wartość
-                        } else if (a[j] == 0 && b[j] == 0) {
+                        } else if(pow(a[i] , 2) == b[j]){
+                            jest ++;
+                        } else if( a[i] == 0 && b[i] == 0){
                             jest++;
                         }
                     }
-
                 }
+                
             }
 
             // zwraca ostateczny wynik działania funkcji
@@ -141,4 +142,37 @@ public class Main {
             }
         }
 
+        static int[] ridOFF(int[] a){
+            //Funkcja do usuwania powtarzajacych sie wystapien 
+            //w danej tablicy
+            // zmienna pomocnicza potrzebna do okreslenia długośći  
+            int dltemp = 0;
+
+            for(int i = 0; i < a.length - 1; i++){
+                if( a[i] != a[i+1]) {
+                    dltemp++;
+                }
+            }
+
+            // zmienna pomocnicza
+            int j = 0;
+            int[] temp = new int[dltemp];
+
+            for(int i = 0; i < a.length - 1; i++){
+                if(a[i] != a[i+1]){
+                    temp[j++] = a[i];
+                }
+            }
+            //temp[j++] = a[a.length-1];
+
+
+            //podmiana warotsci w tablicy 
+            //glownej na wartosci z tablicy pomocniczej
+
+            for(int i = 0; i < j; i++){
+                a[i] = temp[i];
+            }
+
+            return temp;
+        }
     }

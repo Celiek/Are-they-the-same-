@@ -1,6 +1,8 @@
 //package com.company;
 import java.util.Arrays;
+import java.util.LinkedHashSet;
 import java.util.stream.IntStream;
+import java.util.Map;
 
 import static java.lang.Math.pow;
 
@@ -51,15 +53,15 @@ public class Main {
             Arrays.sort(b);
             //określa czy dana tablica jest podzielna przez drugą
             int jest = 0;
-            // dlugosci tablic a i b
-            int dla = a.length;
-            int dlb = b.length;
             //suma długośći obu tablic
             int suma = IntStream.of(a).sum();
             int sumb = IntStream.of(b).sum();
             
-            a = ridOFF(a);
-            b = ridOFF(b);
+            LinkedHashSet<Integer> = new 
+
+            // dlugosci tablic a i b
+            int dla = a.length;
+            int dlb = b.length;
 
             // for (int i = 0; i < a.length; i++) {
             // System.out.println("Wartosc zmiennej a: " + a[i]);
@@ -129,6 +131,8 @@ public class Main {
                     }
                 }
                 
+            } else{
+                System.out.println("Coś poszło nie tak");
             }
 
             // zwraca ostateczny wynik działania funkcji
@@ -142,37 +146,26 @@ public class Main {
             }
         }
 
-        static int[] ridOFF(int[] a){
-            //Funkcja do usuwania powtarzajacych sie wystapien 
-            //w danej tablicy
-            // zmienna pomocnicza potrzebna do okreslenia długośći  
-            int dltemp = 0;
+        // static int[] ridOFF(int[] a){
+        //     // int[] temp = new int[a.length];
+            
+        //     // int tempprarily = 0;
 
-            for(int i = 0; i < a.length - 1; i++){
-                if( a[i] != a[i+1]) {
-                    dltemp++;
-                }
-            }
+        //     // for(int i = 0 ; i < a.length - 1; i++){
+        //     //     int curr = a[i];
 
-            // zmienna pomocnicza
-            int j = 0;
-            int[] temp = new int[dltemp];
+        //     //     if(curr != a[i+1]){
+        //     //         temp[tempprarily++] = curr;
+        //     //     }
+        //     // }
+            
+        //     // temp[tempprarily++] = a[a.length - 1 ];
 
-            for(int i = 0; i < a.length - 1; i++){
-                if(a[i] != a[i+1]){
-                    temp[j++] = a[i];
-                }
-            }
-            //temp[j++] = a[a.length-1];
+        //     LinkedHashSet<Integer> linkedHashSet = new LinkedHashSet<>(Arrays.asList(a.length));
 
+        //     // bez dyplikatów
+        //     Integer[] bezdup = linkedHashSet.toArray(new Integer[] {});
 
-            //podmiana warotsci w tablicy 
-            //glownej na wartosci z tablicy pomocniczej
-
-            for(int i = 0; i < j; i++){
-                a[i] = temp[i];
-            }
-
-            return temp;
-        }
+        //     return bezdup;
+        // }
     }

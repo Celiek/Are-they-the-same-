@@ -30,3 +30,16 @@ Wartosc zmiennej b: 38025
 
 int[] a8 = new int[]{-14, 0, 1, 19, 144, 161, 191, 195};
 int[] b8 = new int[]{0,1,196,361, 20736, 25921, 36481, 38025};
+
+
+Model kaskadowy (model wodospadu)
+Najstarszym i prawdopodobnie najlepiej znanym cyklem życia
+oprogramowania jest model kaskadowy zwany też modelem
+wodospadu.
+W modelu tym, aby zbudować system informatyczny należy przejść
+przez kolejne etapy, których realizacji ma zapewnić zakończenie
+projektu. Wyjście z jednego etapu jest równocześnie wejściem w
+kolejny, bez możliwości powrotu. Oczywiście w czasie
+poszczególnych etapów mogą wystąpić problemy i wtedy będzie
+konieczny powrót ale możliwość wystąpienia takiej sytuacji powinna
+być minimalizowana.

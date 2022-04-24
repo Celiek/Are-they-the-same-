@@ -53,120 +53,30 @@ public class OLD {
     static boolean AreSame(int[] a, int[] b) {
         Arrays.sort(a);
         Arrays.sort(b);
-        // określa czy dana tablica jest podzielna przez drugą
-        int jest = 0;
         // suma długośći obu tablic
         int suma = IntStream.of(a).sum();
         int sumb = IntStream.of(b).sum();
 
-        //Usuwa powtarzające sie 
-        a = ridOFF(a);
-        b = ridOFF(b);
 
-        // dlugosci tablic a i b
-        int dla = a.length;
-        int dlb = b.length;
-
-        // for (int i = 0; i < a.length; i++) {
-        //     System.out.println("Wartosc zmiennej a: " + a[i]);
-        //     System.out.println("Wartosc zmiennej b: " + b[i]);
-        // }
-
-        // wyświetla sume wartośći poszczególnych tablic
-        // System.out.println("Suma wartośći a " + suma);
-        // System.out.println("Suma wartośći b " + sumb);
-
-        if (dla != dlb) {
+        // sprawdzanei podstawowowych założeń 
+        if (a.length != b.length) {
             System.out.println("Nie są jednkaowej długośći ");
             return false;
         } else if (a == null || b == null) {
             System.out.println("Tablice są puste");
             return false;
-        } else if (dla == 0 && dlb == 0) {
-            System.out.println("Tablice mają tylko zero w sobie ");
-            return true;
         }
+        int[] sortedA = Arrays.stream(a).map(Math::abs).sorted().toArray();
+        int[] sortedB = Arrays.stream(b).sorted().toArray();
 
-        // for (int i = 0; i < dla; i++) {
-        // System.out.println("Wartosc zmiennej a: " + a[i]);
-        // System.out.println("Wartosc zmiennej b: " + b[i]);
-        // }
 
-        if (suma > sumb) {
-            // sprawdzanie wszystkich elementów tablicy a
-            for (int j = 0; j < dla; j++) {
-                for (int i = 0; i < dla; i++) {
-                    // Sprawdzanie po kolei czy kwadrat danej liczby
-                    // jest kwadratem licbzy z tablicy a
-                    if (pow(b[j], 2) == a[i]) {
-                        // System.out.println("Jest równa tablicy b");
-                        jest++;
-                        // Sprawdzanie czy wartość zmiennej a i b jest taka sama
-                    } else if (b[j] == 0 && b[i] == 0) {
-                        jest++;
-                        // alternatywne wyniki do warunków powyżej
-                    }
-                }
+        for(int i = 0; i < a.length; i++){
+            if(sortedA[i] * sortedA[i] != sortedB[i]){
+                return false;
             }
-            // jeżeli sumy długości obu tablic sa jednakowe
-        } else if (suma == sumb) {
-            // sprawdzanie każdej kómórki pamieci
-            for (int j = 0; j < dla; j++) {
-                for (int i = 0; i < dla; i++) {
-                    if (pow(b[j], 2) == a[i]) {
-                        // sprawdzanie czy długość dla jest dłuższe od dlb
-                        jest++;
-                    } else if (b[j] == 0 && a[i] == 0) {
-                        jest++;
-                    }
-                }
-            }
-        } else if (sumb > suma) {
-            for (int i = 0; i < dlb; i++) {
-                for (int j = 0; j < dlb; j++) {
-                    if ( (int)pow(a[i], 2) == b[j]) {
-                        jest++;
-                    } else if (pow(a[i], 2) == b[j]) {
-                        jest++;
-                    } else if (a[i] == 0 && b[i] == 0) {
-                        jest++;
-                    }
-                }
-            }
-
-        } else {
-            System.out.println("Coś poszło nie tak");
         }
-
-        // zwraca ostateczny wynik działania funkcji
-        if (jest == dla) {
-            return true;
-        } else if (jest == dlb) {
-            return true;
-        } else {
-            return false;
-        }
+        return true;
     }
 
-    //Usuwanie powtórzeń z tablicy
-    //
-    //  
-    static int[] ridOFF(int[] a) {
-        int[] bezdup = new int[a.length];
-        int j = 0;
-        
-        for(int i= 0; i < a.length - 1; i++){
-            if(a[i] != a[i+1]){
-                bezdup[j++] = a[i];
-            }
-        }
-
-        bezdup[j++] = a[a.length-1];
-
-        List<Integer> lista = new ArrayList<Integer>(Arrays.asList(bezdup));
-        lista.removeAll(Arrays.asList(Integer.valueOf(0)));
-        bezdup = lista.toArray(new Integer[lista.size()]);
-
-        return bezdup;
-    }
+    
 }

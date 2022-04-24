@@ -2,31 +2,216 @@ int[] a6 = new int[]{11, 19, 19, 19, 121, 144, 144, 161, 1008};
 int[] b6 = new int[]{121, 361, 361, 14641, 20736, 20736, 25921, 36100};
 int[] a7 = new int[] = {2,2,3};
 int[] b7 = new int[] = {4,9,9};
-
-Wartosc zmiennej a: -14
-
-Wartosc zmiennej b: 0
-Wartosc zmiennej a: 0
-
-Wartosc zmiennej b: 1
-Wartosc zmiennej a: 1
-
-Wartosc zmiennej b: 196
-Wartosc zmiennej a: 19
-
-Wartosc zmiennej b: 361
-Wartosc zmiennej a: 144
-
-Wartosc zmiennej b: 20736
-Wartosc zmiennej a: 161
-
-Wartosc zmiennej b: 25921
-Wartosc zmiennej a: 191
-
-Wartosc zmiennej b: 36481
-Wartosc zmiennej a: 195
-
-Wartosc zmiennej b: 38025
-
 int[] a8 = new int[]{-14, 0, 1, 19, 144, 161, 191, 195};
 int[] b8 = new int[]{0,1,196,361, 20736, 25921, 36481, 38025};
+
+2 2 3 Wartosc zmeinnych b 
+4 9 9 Wartosci zmiennych a i
+
+Building configuration...
+
+Current configuration : 4340 bytes
+!
+version 12.2
+no service timestamps log datetime msec
+no service timestamps debug datetime msec
+service password-encryption
+!
+hostname switch-0
+!
+enable secret 5 $1$mERr$SbFKg3ccmJL610GrK1HbZ/
+enable password 7 0822455D0A16
+!
+!
+!
+no ip domain-lookup
+ip domain-name test.local
+!
+username admin privilege 1 password 7 08154D44071C2D1601070345
+!
+!
+!
+spanning-tree mode pvst
+spanning-tree extend system-id
+!
+interface Port-channel1
+!
+interface FastEthernet0/1
+ switchport access vlan 10
+ switchport mode access
+ switchport port-security
+ switchport port-security maximum 3
+ spanning-tree portfast
+ spanning-tree bpduguard enable
+!
+interface FastEthernet0/2
+ switchport access vlan 10
+ switchport mode access
+ switchport port-security
+ switchport port-security maximum 3
+ spanning-tree portfast
+ spanning-tree bpduguard enable
+!
+interface FastEthernet0/3
+ switchport access vlan 10
+ switchport mode access
+ switchport port-security
+ switchport port-security maximum 3
+ spanning-tree portfast
+ spanning-tree bpduguard enable
+!
+interface FastEthernet0/4
+ switchport access vlan 10
+ switchport mode access
+ switchport port-security
+ switchport port-security maximum 3
+ spanning-tree portfast
+ spanning-tree bpduguard enable
+!
+interface FastEthernet0/5
+ switchport access vlan 10
+ switchport mode access
+ switchport port-security
+ switchport port-security maximum 3
+ spanning-tree portfast
+ spanning-tree bpduguard enable
+!
+interface FastEthernet0/6
+ switchport access vlan 10
+ switchport mode access
+ switchport port-security
+ switchport port-security maximum 3
+ spanning-tree portfast
+ spanning-tree bpduguard enable
+!
+interface FastEthernet0/7
+ switchport access vlan 20
+ switchport port-security maximum 3
+ spanning-tree portfast
+ spanning-tree bpduguard enable
+!
+interface FastEthernet0/8
+ switchport access vlan 20
+ switchport port-security maximum 3
+ spanning-tree portfast
+ spanning-tree bpduguard enable
+!
+interface FastEthernet0/9
+ switchport access vlan 20
+ switchport port-security maximum 3
+ spanning-tree portfast
+ spanning-tree bpduguard enable
+!
+interface FastEthernet0/10
+ switchport access vlan 20
+ switchport port-security maximum 3
+ spanning-tree portfast
+ spanning-tree bpduguard enable
+!
+interface FastEthernet0/11
+ switchport access vlan 20
+ switchport port-security maximum 3
+ spanning-tree portfast
+ spanning-tree bpduguard enable
+!
+interface FastEthernet0/12
+ switchport access vlan 20
+ switchport port-security maximum 3
+ spanning-tree portfast
+ spanning-tree bpduguard enable
+!
+interface FastEthernet0/13
+ switchport access vlan 30
+ switchport port-security maximum 3
+ spanning-tree portfast
+ spanning-tree bpduguard enable
+!
+interface FastEthernet0/14
+ switchport access vlan 30
+ switchport port-security maximum 3
+ spanning-tree portfast
+ spanning-tree bpduguard enable
+!
+interface FastEthernet0/15
+ switchport access vlan 30
+ switchport port-security maximum 3
+ spanning-tree portfast
+ spanning-tree bpduguard enable
+!
+interface FastEthernet0/16
+ switchport access vlan 30
+ switchport port-security maximum 3
+ spanning-tree portfast
+ spanning-tree bpduguard enable
+!
+interface FastEthernet0/17
+ switchport access vlan 30
+ switchport port-security maximum 3
+ spanning-tree portfast
+ spanning-tree bpduguard enable
+!
+interface FastEthernet0/18
+ switchport access vlan 30
+ switchport port-security maximum 3
+ spanning-tree portfast
+ spanning-tree bpduguard enable
+!
+interface FastEthernet0/19
+ switchport access vlan 999
+ switchport mode access
+ switchport port-security
+ switchport port-security maximum 3
+ spanning-tree portfast
+ spanning-tree bpduguard enable
+!
+interface FastEthernet0/20
+ switchport access vlan 999
+ switchport mode access
+!
+interface FastEthernet0/21
+ switchport access vlan 999
+ switchport mode access
+!
+interface FastEthernet0/22
+ switchport access vlan 999
+ switchport mode access
+!
+interface FastEthernet0/23
+ switchport mode trunk
+ channel-group 1 mode active
+!
+interface FastEthernet0/24
+ switchport mode trunk
+ channel-group 1 mode active
+!
+interface GigabitEthernet0/1
+ switchport mode trunk
+!
+interface GigabitEthernet0/2
+!
+interface Vlan1
+ no ip address
+ shutdown
+!
+interface Vlan10
+ ip address 10.10.0.4 255.255.255.0
+!
+ip default-gateway 10.10.0.1
+!
+!
+!
+!
+line con 0
+ password 7 0822455D0A16
+ login
+!
+line vty 0 4
+ password 7 0822455D0A16
+ login local
+line vty 5 15
+ login
+!
+!
+!
+!
+end

@@ -1,18 +1,27 @@
-import java.util.*;
-import java.util.stream.*;
 
-public class Main {
+// package com.company;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.LinkedHashSet;
+import java.util.List;
+import java.util.stream.IntStream;
+import java.util.Map;
+
+import static java.lang.Math.pow;
+
+public class OLD {
+
     public static void main(String[] args) {
-        // Strefa Testów:
+        // System.out.println("Hello, World!");
 
-        int[] a = new int[] { 0, 144, 19, 161, 19, 144, 19, 11 };
-        int[] b = new int[] { 0, 14641, 20736, 361, 25921, 361, 20736, 361 };
-        int[] a1 = new int[] { 2, 2, 3 };
-        int[] b1 = new int[] { 4, 4, 9 };
+        // int[] a = new int[] { 0, 144, 19, 161, 19, 144, 19, 11 };
+        // int[] b = new int[] { 0, 14641, 20736, 361, 25921, 361, 20736, 361 };
+        // int[] a1 = new int[] { 2, 2, 3 };
+        // int[] b1 = new int[] { 4, 4, 9 };
         int[] a2 = new int[] { 11, 19, 19, 121, 144, 144, 161, 161 };
         int[] b2 = new int[] { 121, 361, 361, 361, 14641, 20736, 20736, 25921 };
-        int[] a3 = new int[] {};
-        int[] b3 = new int[] {};
+        // int[] a3 = new int[] {};
+        // int[] b3 = new int[] {};
         int[] a4 = new int[] { 0 };
         int[] b4 = new int[] { 0 };
         int[] a6 = new int[] { 11, 19, 19, 19, 121, 144, 144, 161, 1008 };
@@ -22,18 +31,18 @@ public class Main {
         int[] a8 = new int[] { -14, 0, 1, 19, 144, 161, 191, 195 };
         int[] b8 = new int[] { 0, 1, 196, 361, 20736, 25921, 36481, 38025 };
 
-        System.out.println("Test 1: ");
-        System.out.println(AreSame(a, b));
+        // System.out.println("Test 1: ");
+        // System.out.println(AreSame(a, b));
         System.out.println("Test 2 Wartosc ktora powinna wyjsc : True");
         System.out.println(AreSame(a2, b2));
-        System.out.println("Test 3: ");
-        System.out.println(AreSame(a2, b2));
-        System.out.println("Test 4: ");
-        System.out.println(AreSame(a3, b3));
-        System.out.println("Test 5: ");
-        System.out.println(AreSame(a4, b4));
-        System.out.println("Test 6: ");
-        System.out.println(AreSame(a6, b6));
+        // System.out.println("Test 3: ");
+        // System.out.println(AreSame(a2, b2));
+        // System.out.println("Test 4: ");
+        // System.out.println(AreSame(a3, b3));
+        // System.out.println("Test 5: ");
+        // System.out.println(AreSame(a4, b4));
+        // System.out.println("Test 6: ");
+        // System.out.println(AreSame(a6, b6));
         System.out.println(":Test 7");
         System.out.println(AreSame(a7, b7));
 
@@ -41,77 +50,30 @@ public class Main {
         // System.out.print(AreSame(a8, b8));
     }
 
-    static boolean AreSame(int[] a, int[] b){
+    static boolean AreSame(int[] a, int[] b) {
+        Arrays.sort(a);
+        Arrays.sort(b);
+        // suma długośći obu tablic
+        int suma = IntStream.of(a).sum();
+        int sumb = IntStream.of(b).sum();
 
-        //Sprawdzanie podstawowych założeń
-        //programowych zdefioniowanych przez program
-        if(a.length != b.length){
-            System.out.println("Nie są jednakowej długośći");
-            return false; 
-        } else if(a.length ==0 && b.length ==0){
-            System.out.println("");
+        // sprawdzanei podstawowowych założeń
+        if (a.length != b.length) {
+            System.out.println("Nie są jednkaowej długośći ");
+            return false;
+        } else if (a == null || b == null) {
+            System.out.println("Tablice są puste");
+            return false;
         }
+        int[] sortedA = Arrays.stream(a).map(Math::abs).sorted().toArray();
+        int[] sortedB = Arrays.stream(b).sorted().toArray();
 
-        //Tymczasowe wartości potrzebne do zamiany int[] na Integer[]
-        //przez boxowanie
-        Integer[] aa = Arrays.stream( a).boxed().toArray(Integer[]::new);
-        Integer[] bb = Arrays.stream( b).boxed().toArray(Integer[]::new);
-
-        //Zamiania Integer[] na Listę
-        //dodani do Arralist-a wartość z tablic aa i bb
-        // też zmienne pomocnicze
-        ArrayList<Integer> A = new ArrayList<Integer>(Arrays.asList(aa));
-        ArrayList<Integer> B = new ArrayList<Integer>(Arrays.asList(bb));
-
-        //Sortowanie ArrayList-ow
-        Collections.sort(A);
-        Collections.sort(B);
-        //Pomocnicze zmienne 
-        int dla = A.size();
-        int dlb = B.size();
-        int ilejest = 0;
-        int sumA =0;
-        int sumB =0;
-        
-        // Usuwanie dulpikatóww z Arraylist
-        // zapisywanie do zmiennej pomocniczej
-        ArrayList<Integer> newlistA = getRidOff(A);
-        ArrayList<Integer> newlistB = getRidOff(B);
-        
-        // zliczanie długości arraylisty 
-        // newlistA metodą advanced for
-        for(int i : newlistA){
-            sumA +=i;
+        for (int i = 0; i < a.length; i++) {
+            if (sortedA[i] * sortedA[i] != sortedB[i]) {
+                return false;
+            }
         }
-
-        // zliczanie długości arraylisty
-        // newlistB metodą standardową for
-        for(int i = 0; i < newlistA.size(); i++){
-            sumB += newlistA.get(i);
-        }
-
-        if(dla > dlb){
-
-        } else if(dla == dlb){
-
-        } else if(dlb > dla){
-
-        }
-
-        return false;
+        return true;
     }
 
-    public static <T> ArrayList<T> getRidOff(ArrayList<T> list){
-        // Tworzenie nowej hashmapy
-        Set<T> set = new LinkedHashSet<>();
-        // dodawniae elementu do hashmapy
-        set.addAll(list);
-
-        // czyszczenie wejściowej listy
-        list.clear();
-        // dodawanie elementów listy
-        // 
-        list.addAll(set);
-        return list;
-    }
 }
